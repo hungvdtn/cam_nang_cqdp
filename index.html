@@ -69,13 +69,13 @@
             margin: 5px 0 0 0;
             color: var(--primary-color);
             text-transform: uppercase;
-            font-weight: bold;
+            font-weight: bold; /* Added bold */
         }
 
         .title-tag {
             font-size: 1.2rem; /* Larger */
             color: var(--text-color);
-            font-weight: bold;
+            font-weight: bold; /* Added bold */
             margin-top: 8px;
         }
 
@@ -122,7 +122,7 @@
 
         /* Handbook Content Page Styling */
         #handbook-content { display: none; flex-direction: column; }
-        #handbook-content header { background-color: var(--header-bg); color: var(--header-text); padding: 15px 20px; text-align: center; font-size: 1.2rem; font-weight: bold; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 999; display: flex; justify-content: center; align-items: center; }
+        #handbook-content header { background-color: var(--header-bg); color: white; padding: 15px 20px; text-align: center; font-size: 1.2rem; font-weight: bold; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 999; display: flex; justify-content: center; align-items: center; }
         .home-btn { position: absolute; left: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
         main { padding: 20px; }
         
@@ -138,17 +138,16 @@
 
         @media (min-width: 1024px) {
             .desktop-layout { flex-direction: row; align-items: flex-start; gap: 30px; }
-            .menu-container { flex: 2; } /* Menu takes more space */
+            .menu-container { flex: 2; }
             .menu-grid { grid-template-columns: repeat(2, 1fr); }
             .image-container {
-                flex: 1.5; /* Image takes less space */
+                flex: 1.5;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding-top: 20px;
-                position: sticky; top: 100px; /* Make image sticky on scroll */
+                position: sticky; top: 100px;
             }
-            .image-container img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow); }
         }
 
         .qrcode-container { text-align: center; margin: 0; padding: 20px; background-color: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); }
@@ -210,7 +209,7 @@
     <div id="handbook-content">
         <header>
             <button class="home-btn" onclick="goHome()" title="Về trang chủ"><i class="fas fa-home"></i></button>
-            <span id="header-title">Cẩm nang chính quyền địa phương cấp xã</span>
+            <span id="header-title">Cẩm nang CQĐP cấp xã</span>
         </header>
 
         <main>
@@ -219,102 +218,121 @@
                     <div class="menu-container">
                         <div class="menu-grid">
                             <div class="menu-card" onclick="showView('view-part1')"><p class="part-number">Phần 1.</p><i class="fas fa-landmark"></i><h3>Những vấn đề chung</h3></div>
-                            <div class="menu-card" onclick="showView('view-part2')"><p class="part-number">Phần 2.</p><i class="fas fa-users"></i><h3>Hội đồng nhân dân cấp xã</h3></div>
-                            <div class="menu-card" onclick="showView('view-part3')"><p class="part-number">Phần 3.</p><i class="fas fa-building-user"></i><h3>Ủy ban nhân dân cấp xã</h3></div>
+                            <div class="menu-card" onclick="showView('view-part2')"><p class="part-number">Phần 2.</p><i class="fas fa-users"></i><h3>HĐND cấp xã</h3></div>
+                            <div class="menu-card" onclick="showView('view-part3')"><p class="part-number">Phần 3.</p><i class="fas fa-building-user"></i><h3>UBND cấp xã</h3></div>
                             <div class="menu-card" onclick="showView('view-part4')"><p class="part-number">Phần 4.</p><i class="fas fa-exchange-alt"></i><h3>Một số quy định chuyển tiếp</h3></div>
                             <div class="menu-card" onclick="showView('view-part5')"><p class="part-number">Phần 5.</p><i class="fas fa-question-circle"></i><h3>Câu hỏi thường gặp</h3></div>
                             <div class="menu-card" onclick="showView('view-part6')"><p class="part-number">Phần 6.</p><i class="fas fa-paperclip"></i><h3>Phụ lục</h3></div>
                             <div class="menu-card" onclick="showView('view-abbreviations')"><i class="fas fa-book"></i><h3>Tra cứu chữ viết tắt</h3></div>
-                            <div class="menu-card qrcode-container"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAEsASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1VZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5ODn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/+CgP/JAfGf8A25f+lsNFAH/2Q==" alt="Mô hình chính quyền địa phương 2 cấp">
+                            <div class="menu-card qrcode-container"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAEsASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1VZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5ODn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/+CgP/JAfGf8A25f+lsNFAH/2Q==" alt="QR Code Phụ lục"><p>Phụ lục PCPQ của các Bộ</p></div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <!-- Image is placed here for desktop view -->
                     </div>
                 </div>
                  <a href="cam_nang.pdf" download class="btn download-pdf"><i class="fas fa-download"></i> Tải về Cẩm nang (PDF)</a>
             </div>
 
             <!-- Content Views -->
-            <div id="view-part1" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>P1. Những vấn đề chung</h2>
-                <button class="accordion">1. Tổ chức đơn vị hành chính cấp xã</button>
-                <div class="panel">
-                    <p>Theo quy định tại Điều 1 Luật Tổ chức CQĐP năm 2025, đơn vị hành chính cấp xã gồm có xã, phường, đặc khu trực thuộc cấp tỉnh. Trong đó:</p>
-                    <ul class="infographic-list">
-                        <li><strong>Xã:</strong> là đơn vị hành chính ở nông thôn.</li>
-                        <li><strong>Phường:</strong> là đơn vị hành chính ở đô thị.</li>
-                        <li><strong>Đặc khu:</strong> là đơn vị hành chính ở một số hải đảo có vị trí quan trọng được thành lập phù hợp với điều kiện địa lý, tự nhiên, đặc điểm dân cư và yêu cầu phát triển kinh tế - xã hội, bảo đảm quốc phòng, an ninh.</li>
-                    </ul>
-                     <p>Tính đến ngày 01/7/2025 (ngày bắt đầu thực hiện mô hình tổ chức CQĐP 02 cấp), cả nước có 3.321 đơn vị hành chính cấp xã, gồm: 2.621 xã, 687 phường và 13 đặc khu.</p>
-                </div>
-                <button class="accordion">2. Tổ chức CQĐP cấp xã</button>
-                <div class="panel">
-                    <p>Theo quy định tại Điều 2 Luật Tổ chức CQĐP năm 2025, CQĐP ở xã, phường, đặc khu (trừ các đặc khu có dân số thường trú dưới 1.000 người) là cấp CQĐP gồm có HĐND và UBND.</p>
-                    <p>Theo quy định tại Điều 28 Luật Tổ chức CQĐP năm 2025, tại đặc khu có dân số thường trú dưới 1.000 người thì không tổ chức cấp CQĐP. UBND đặc khu thực hiện các chức năng, nhiệm vụ, quyền hạn của CQĐP tại đặc khu này.</p>
-                </div>
-                <button class="accordion">3. Nguyên tắc tổ chức và hoạt động của CQĐP</button>
-                <div class="panel">
-                    <p>Theo quy định tại Điều 4 Luật Tổ chức CQĐP năm 2025, CQĐP cấp xã có 06 nguyên tắc tổ chức và hoạt động sau đây:</p>
-                    <ul class="infographic-list">
-                        <li>Tuân thủ Hiến pháp và pháp luật, quản lý xã hội bằng pháp luật; thực hiện nguyên tắc tập trung dân chủ.</li>
-                        <li>Tổ chức CQĐP tinh gọn, hiệu năng, hiệu lực, hiệu quả, đáp ứng yêu cầu quản trị địa phương chuyên nghiệp, hiện đại.</li>
-                        <li>Bảo đảm quyền con người, quyền công dân; xây dựng CQĐP gần Nhân dân, phục vụ Nhân dân.</li>
-                        <li>Bảo đảm nền hành chính minh bạch, thống nhất, thông suốt, liên tục.</li>
-                        <li>Những công việc thuộc thẩm quyền của CQĐP phải do CQĐP quyết định và tổ chức thực hiện.</li>
-                        <li>Phân định rõ thẩm quyền giữa cơ quan nhà nước ở trung ương và CQĐP; giữa CQĐP cấp tỉnh và CQĐP cấp xã.</li>
-                    </ul>
-                </div>
-                <button class="accordion">4. Vị trí, chức năng của HĐND</button>
-                <div class="panel">
-                     <p>HĐND cấp xã là cơ quan quyền lực nhà nước ở cấp xã, đại diện cho ý chí, nguyện vọng và quyền làm chủ của Nhân dân, quyết định các vấn đề quan trọng của cấp xã, giám sát việc tuân theo Hiến pháp và pháp luật, giám sát hoạt động của các cơ quan nhà nước trên địa bàn; chịu trách nhiệm trước Nhân dân địa phương và cơ quan nhà nước cấp trên (Điều 5 Luật Tổ chức CQĐP năm 2025).</p>
-                </div>
-                <button class="accordion">5. Vị trí, chức năng của UBND xã</button>
-                <div class="panel">
-                     <p>UBND cấp xã nơi tổ chức cấp chính quyền địa phương do HĐND cấp xã bầu ra, là cơ quan chấp hành của HĐND, cơ quan hành chính nhà nước ở địa phương, tổ chức thi hành Hiến pháp, pháp luật và nghị quyết của HĐND cấp xã, chịu trách nhiệm trước Nhân dân địa phương, HĐND cấp xã và UBND cấp tỉnh (Điều 6 Luật Tổ chức CQĐP năm 2025).</p>
-                </div>
-                <button class="accordion">6. Đại biểu HĐND cấp xã</button>
-                <div class="panel">
-                    <p>Đại biểu HĐND cấp xã là người được cử tri ở địa phương bầu ra, đại diện cho ý chí, nguyện vọng của Nhân dân địa phương, chịu trách nhiệm trước cử tri địa phương và trước HĐND về việc thực hiện nhiệm vụ, quyền hạn đại biểu của mình.</p>
-                    <p>Tiêu chuẩn chung của đại biểu HĐND quy định tại khoản 3 Điều 5 Luật Tổ chức CQĐP năm 2025, gồm:</p>
-                     <ul class="infographic-list">
-                        <li>Trung thành với Tổ quốc, Nhân dân và Hiến pháp.</li>
-                        <li>Chỉ có một quốc tịch là quốc tịch Việt Nam.</li>
-                        <li>Có phẩm chất đạo đức tốt, cần, kiệm, liêm, chính, chí công vô tư.</li>
-                        <li>Có trình độ học vấn, chuyên môn, đủ năng lực, sức khỏe, kinh nghiệm công tác và uy tín.</li>
-                        <li>Cư trú hoặc công tác tại đơn vị hành chính mà mình là đại biểu.</li>
-                        <li>Liên hệ chặt chẽ với Nhân dân, lắng nghe ý kiến của Nhân dân, được Nhân dân tín nhiệm.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div id="view-part2" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P2. Hội đồng nhân dân cấp xã</h2><p>Nội dung đang được cập nhật...</p></div>
-            <div id="view-part3" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P3. Ủy ban nhân dân cấp xã</h2><p>Nội dung đang được cập nhật...</p></div>
-            <div id="view-part4" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P4. Một số quy định chuyển tiếp</h2><p>Nội dung đang được cập nhật...</p></div>
-            <div id="view-part5" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P5. Câu hỏi</h2><p>Nội dung đang được cập nhật...</p></div>
-            <div id="view-part6" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P6. Phụ lục</h2><p>Nội dung đang được cập nhật...</p></div>
+             <div id="view-part1" class="content-section view"></div>
+            <div id="view-part2" class="content-section view"></div>
+            <div id="view-part3" class="content-section view"></div>
+            <div id="view-part4" class="content-section view"></div>
+            <div id="view-part5" class="content-section view"></div>
+            <div id="view-part6" class="content-section view"></div>
+            <div id="view-abbreviations" class="content-section view"></div>
 
-            <div id="view-abbreviations" class="content-section view">
-                 <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Tra cứu chữ viết tắt</h2>
-                <table class="abbreviation-table">
-                    <thead><tr><th>Viết tắt</th><th>Chữ viết đầy đủ</th></tr></thead>
-                    <tbody>
-                        <tr><td>CQĐP</td><td>Chính quyền địa phương</td></tr>
-                        <tr><td>HĐND</td><td>Hội đồng nhân dân</td></tr>
-                        <tr><td>UBND</td><td>Uỷ ban nhân dân</td></tr>
-                        <tr><td>PCPQ</td><td>Phân cấp, phân quyền</td></tr>
-                        <tr><td>PĐTQ</td><td>Phân định thẩm quyền</td></tr>
-                    </tbody>
-                </table>
-            </div>
         </main>
     </div>
 
     <script>
+        const part1Content = `
+            <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            <h2>P1. Những vấn đề chung</h2>
+            <button class="accordion">1. Tổ chức đơn vị hành chính cấp xã</button>
+            <div class="panel">
+                <p>Theo quy định tại Điều 1 Luật Tổ chức CQĐP năm 2025, đơn vị hành chính cấp xã gồm có xã, phường, đặc khu trực thuộc cấp tỉnh. Trong đó:</p>
+                <ul class="infographic-list">
+                    <li><strong>Xã:</strong> là đơn vị hành chính ở nông thôn.</li>
+                    <li><strong>Phường:</strong> là đơn vị hành chính ở đô thị.</li>
+                    <li><strong>Đặc khu:</strong> là đơn vị hành chính ở một số hải đảo có vị trí quan trọng được thành lập phù hợp với điều kiện địa lý, tự nhiên, đặc điểm dân cư và yêu cầu phát triển kinh tế - xã hội, bảo đảm quốc phòng, an ninh.</li>
+                </ul>
+                <p>Tính đến ngày 01/7/2025 (ngày bắt đầu thực hiện mô hình tổ chức CQĐP 02 cấp), cả nước có 3.321 đơn vị hành chính cấp xã, gồm: 2.621 xã, 687 phường và 13 đặc khu.</p>
+            </div>
+            <button class="accordion">2. Tổ chức CQĐP cấp xã</button>
+            <div class="panel">
+                <p>Theo quy định tại Điều 2 Luật Tổ chức CQĐP năm 2025, CQĐP ở xã, phường, đặc khu (trừ các đặc khu có dân số thường trú dưới 1.000 người) là cấp CQĐP gồm có HĐND và UBND.</p>
+                <p>Theo quy định tại Điều 28 Luật Tổ chức CQĐP năm 2025, tại đặc khu có dân số thường trú dưới 1.000 người thì không tổ chức cấp CQĐP. UBND đặc khu thực hiện các chức năng, nhiệm vụ, quyền hạn của CQĐP tại đặc khu này.</p>
+            </div>
+            <button class="accordion">3. Nguyên tắc tổ chức và hoạt động của CQĐP</button>
+            <div class="panel">
+                <p>Theo quy định tại Điều 4 Luật Tổ chức CQĐP năm 2025, CQĐP cấp xã có 06 nguyên tắc tổ chức và hoạt động sau đây:</p>
+                <ul class="infographic-list">
+                    <li>Tuân thủ Hiến pháp và pháp luật, quản lý xã hội bằng pháp luật; thực hiện nguyên tắc tập trung dân chủ.</li>
+                    <li>Tổ chức CQĐP tinh gọn, hiệu năng, hiệu lực, hiệu quả, đáp ứng yêu cầu quản trị địa phương chuyên nghiệp, hiện đại.</li>
+                    <li>Bảo đảm quyền con người, quyền công dân; xây dựng CQĐP gần Nhân dân, phục vụ Nhân dân.</li>
+                    <li>Bảo đảm nền hành chính minh bạch, thống nhất, thông suốt, liên tục.</li>
+                    <li>Những công việc thuộc thẩm quyền của CQĐP phải do CQĐP quyết định và tổ chức thực hiện.</li>
+                    <li>Phân định rõ thẩm quyền giữa cơ quan nhà nước ở trung ương và CQĐP; giữa CQĐP cấp tỉnh và CQĐP cấp xã.</li>
+                </ul>
+            </div>
+            <button class="accordion">4. Vị trí, chức năng của HĐND</button>
+            <div class="panel">
+                <p>HĐND cấp xã là cơ quan quyền lực nhà nước ở cấp xã, đại diện cho ý chí, nguyện vọng và quyền làm chủ của Nhân dân, quyết định các vấn đề quan trọng của cấp xã, giám sát việc tuân theo Hiến pháp và pháp luật, giám sát hoạt động của các cơ quan nhà nước trên địa bàn; chịu trách nhiệm trước Nhân dân địa phương và cơ quan nhà nước cấp trên (Điều 5 Luật Tổ chức CQĐP năm 2025).</p>
+            </div>
+            <button class="accordion">5. Vị trí, chức năng của UBND xã</button>
+            <div class="panel">
+                <p>UBND cấp xã nơi tổ chức cấp chính quyền địa phương do HĐND cấp xã bầu ra, là cơ quan chấp hành của HĐND, cơ quan hành chính nhà nước ở địa phương, tổ chức thi hành Hiến pháp, pháp luật và nghị quyết của HĐND cấp xã, chịu trách nhiệm trước Nhân dân địa phương, HĐND cấp xã và UBND cấp tỉnh (Điều 6 Luật Tổ chức CQĐP năm 2025).</p>
+            </div>
+            <button class="accordion">6. Đại biểu HĐND cấp xã</button>
+            <div class="panel">
+                <p>Đại biểu HĐND cấp xã là người được cử tri ở địa phương bầu ra, đại diện cho ý chí, nguyện vọng của Nhân dân địa phương, chịu trách nhiệm trước cử tri địa phương và trước HĐND về việc thực hiện nhiệm vụ, quyền hạn đại biểu của mình.</p>
+                <p>Tiêu chuẩn chung của đại biểu HĐND quy định tại khoản 3 Điều 5 Luật Tổ chức CQĐP năm 2025, gồm:</p>
+                <ul class="infographic-list">
+                    <li>Trung thành với Tổ quốc, Nhân dân và Hiến pháp.</li>
+                    <li>Chỉ có một quốc tịch là quốc tịch Việt Nam.</li>
+                    <li>Có phẩm chất đạo đức tốt, cần, kiệm, liêm, chính, chí công vô tư.</li>
+                    <li>Có trình độ học vấn, chuyên môn, đủ năng lực, sức khỏe, kinh nghiệm công tác và uy tín.</li>
+                    <li>Cư trú hoặc công tác tại đơn vị hành chính mà mình là đại biểu.</li>
+                    <li>Liên hệ chặt chẽ với Nhân dân, lắng nghe ý kiến của Nhân dân, được Nhân dân tín nhiệm.</li>
+                </ul>
+            </div>`;
+        const abbreviationsContent = `
+            <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            <h2>Tra cứu chữ viết tắt</h2>
+            <table class="abbreviation-table">
+                <thead><tr><th>Viết tắt</th><th>Chữ viết đầy đủ</th></tr></thead>
+                <tbody>
+                    <tr><td>CQĐP</td><td>Chính quyền địa phương</td></tr>
+                    <tr><td>HĐND</td><td>Hội đồng nhân dân</td></tr>
+                    <tr><td>UBND</td><td>Uỷ ban nhân dân</td></tr>
+                    <tr><td>PCPQ</td><td>Phân cấp, phân quyền</td></tr>
+                    <tr><td>PĐTQ</td><td>Phân định thẩm quyền</td></tr>
+                </tbody>
+            </table>`;
+        const placeholderContent = (partNum, title) => `<button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P${partNum}. ${title}</h2><p>Nội dung đang được cập nhật...</p>`;
+
+        // Populate content sections
+        document.getElementById('view-part1').innerHTML = part1Content;
+        document.getElementById('view-part2').innerHTML = placeholderContent(2, 'Hội đồng nhân dân cấp xã');
+        document.getElementById('view-part3').innerHTML = placeholderContent(3, 'Ủy ban nhân dân cấp xã');
+        document.getElementById('view-part4').innerHTML = placeholderContent(4, 'Một số quy định chuyển tiếp');
+        document.getElementById('view-part5').innerHTML = placeholderContent(5, 'Câu hỏi');
+        document.getElementById('view-part6').innerHTML = placeholderContent(6, 'Phụ lục');
+        document.getElementById('view-abbreviations').innerHTML = abbreviationsContent;
+
+        // --- Core Functions ---
         function openModal(modalId) { document.getElementById(modalId).style.display = "block"; }
         function closeModal(modalId) { document.getElementById(modalId).style.display = "none"; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) event.target.style.display = "none"; }
         function enterHandbook() { document.getElementById('landing-page').style.display = 'none'; document.getElementById('handbook-content').style.display = 'flex'; showView('main-menu'); }
         function goHome() { document.getElementById('handbook-content').style.display = 'none'; document.getElementById('landing-page').style.display = 'flex'; }
-        function showView(viewId) { document.querySelectorAll('.view').forEach(view => { view.style.display = 'none'; }); const targetView = document.getElementById(viewId); if (targetView) targetView.style.display = 'block'; }
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(view => { view.style.display = 'none'; });
+            const targetView = document.getElementById(viewId);
+            if (targetView) targetView.style.display = 'block';
+        }
         
         function setupAccordions() {
              document.querySelectorAll(".accordion").forEach(button => {
@@ -329,10 +347,8 @@
                 });
             });
         }
-
-        // Initialize everything after the DOM is loaded.
+        
         document.addEventListener("DOMContentLoaded", function() {
-            // Setup interactivity on the original content
             setupAccordions();
         });
     </script>
