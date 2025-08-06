@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cẩm nang chính quyền địa phương cấp xã – online</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* General Styling */
         :root {
             --primary-color: #0056b3;
             --secondary-color: #007bff;
+            --header-bg: #0d47a1; /* Dark blue for header */
             --background-color: #f4f7fa;
             --text-color: #333;
-            --header-bg: #0d47a1;
-            --header-text: #ffffff;
             --card-bg: #ffffff;
             --shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
@@ -34,53 +32,62 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
             padding: 20px;
             background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            position: relative;
+            box-sizing: border-box;
         }
 
-        #landing-page .logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 20px;
+        .issuing-authority {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: red; /* Changed color to red */
+        }
+        
+        .title-container {
+            margin-bottom: 40px;
         }
 
-        #landing-page h1 {
-            font-size: 2.5rem;
+        .title-main {
+            font-size: 3rem;
             margin: 0;
             color: var(--primary-color);
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em; /* Wider font */
         }
         
-        #landing-page .subtitle {
-            font-size: 1.5rem;
-            margin-top: 5px;
+        .title-sub {
+            font-size: 1.3rem;
+            margin: 5px 0 0 0; /* Closer to title */
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: -0.02em; /* Narrower font */
+        }
+
+        .title-tag {
+            font-size: 1rem;
             color: var(--text-color);
+            font-style: normal; /* Removed italic */
+            font-weight: normal;
+            margin-top: 5px; /* Closer to subtitle */
         }
 
-        #landing-page .online-tag {
-            font-size: 1.2rem;
-            color: #d32f2f;
-            font-style: italic;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        #landing-page .issuing-authority {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        #landing-page .button-container {
-            margin-top: 40px;
+        .button-container {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 12px 28px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -91,25 +98,25 @@
             color: white;
         }
 
-        .btn-primary {
-            background-color: var(--secondary-color);
+        .btn-main-action {
+            background-color: var(--header-bg); /* Dark blue */
         }
-        .btn-primary:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        .btn-main-action:hover {
+            background-color: #0b3a8a;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn-secondary-action {
+            background-color: var(--secondary-color); /* Original blue */
         }
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .btn-secondary-action:hover {
+            background-color: var(--primary-color);
         }
 
         #landing-page footer {
+            width: 100%;
             position: absolute;
             bottom: 20px;
+            left: 0;
             font-size: 0.9rem;
             color: #555;
         }
@@ -156,10 +163,7 @@
             color: black;
         }
 
-        .modal h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
+        .modal h2 { margin-top: 0; color: var(--primary-color); }
 
         /* Handbook Content Page Styling */
         #handbook-content {
@@ -172,13 +176,27 @@
             color: var(--header-text);
             padding: 15px 20px;
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.2rem; /* Adjusted size for normal case */
             font-weight: bold;
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .home-btn {
+            position: absolute;
+            left: 15px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            background-color: rgba(255,255,255,0.2);
+        }
+         .home-btn:hover {
+             background-color: rgba(255,255,255,0.4);
+         }
 
         main {
             padding: 20px;
@@ -189,6 +207,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            justify-items: center; /* Center items within grid cells */
         }
 
         .menu-card {
@@ -199,12 +218,21 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 320px; /* Max width for consistency */
         }
 
         .menu-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             background-color: #e3f2fd;
+        }
+        
+        .menu-card .part-number {
+            font-weight: bold;
+            color: var(--header-bg);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
         }
 
         .menu-card i {
@@ -213,9 +241,26 @@
             margin-bottom: 15px;
         }
 
-        .menu-card h3 {
-            margin: 0;
-            font-size: 1.2rem;
+        .menu-card h3 { margin: 0; font-size: 1.1rem; color: var(--primary-color); }
+
+        /* QR Code section */
+        .qrcode-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: inline-block;
+        }
+        
+        .qrcode-container img {
+            max-width: 150px;
+            height: auto;
+        }
+        .qrcode-container p {
+            margin: 10px 0 0 0;
+            font-weight: bold;
             color: var(--primary-color);
         }
 
@@ -230,10 +275,7 @@
             animation: fade-in 0.5s;
         }
         
-        @keyframes fade-in {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+        @keyframes fade-in { from {opacity: 0;} to {opacity: 1;} }
 
         .content-section h2 {
             color: var(--primary-color);
@@ -242,114 +284,39 @@
             margin-top: 0;
         }
         
-        .content-section h3 {
-             color: #1a237e;
-             margin-top: 25px;
-        }
-        
-        .content-section h4 {
-             color: #3f51b5;
-        }
-
         .back-btn {
             margin-bottom: 20px;
-            background-color: #6c757d;
+            background-color: var(--secondary-color); /* Changed color */
         }
-        .back-btn:hover {
-             background-color: #5a6268;
-        }
+        .back-btn:hover { background-color: var(--primary-color); }
         
-        .download-pdf {
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-            width: fit-content;
-        }
+        .download-pdf { display: block; margin: 20px auto; text-align: center; width: fit-content; background-color: var(--secondary-color); }
+        .download-pdf:hover { background-color: var(--primary-color); }
 
-        /* Infographic & List Styling */
-        .infographic-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        .infographic-list li {
-            background-color: #eef4fb;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-left: 5px solid var(--secondary-color);
-            border-radius: 4px;
-        }
+        /* Infographic & Accordion Styling */
+        .infographic-list { list-style: none; padding-left: 0; }
+        .infographic-list li { background-color: #eef4fb; margin-bottom: 10px; padding: 15px; border-left: 5px solid var(--secondary-color); border-radius: 4px; }
+        .infographic-list li strong { color: var(--primary-color); }
         
-        .infographic-list li strong {
-            color: var(--primary-color);
-        }
+        .accordion { background-color: #f1f1f1; color: #444; cursor: pointer; padding: 18px; width: 100%; border: none; text-align: left; outline: none; font-size: 1.1rem; font-weight: bold; transition: 0.4s; margin-top: 10px; border-radius: 4px; }
+        .accordion:hover, .accordion.active { background-color: #d4eaf7; /* Light blue on hover and active */ }
+        .accordion:after { content: '\\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #777; float: right; margin-left: 5px; }
+        .accordion.active:after { content: "\\f077"; }
+        .panel { padding: 0 18px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; border: 1px solid #ddd; border-top: none; }
+        .panel p, .panel ul { padding: 15px 0; }
         
-        /* Accordion for sub-menus */
-        .accordion {
-            background-color: #eee;
-            color: #444;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: 0.4s;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
-
-        .accordion:hover {
-            background-color: #ccc; 
-        }
-
-        .accordion:after {
-            content: '\\f078';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: #777;
-            float: right;
-            margin-left: 5px;
-        }
-
-        .accordion.active:after {
-            content: "\\f077";
-        }
-
-        .panel {
-            padding: 0 18px;
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            border: 1px solid #ddd;
-            border-top: none;
-        }
+        /* Abbreviation Table */
+        .abbreviation-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .abbreviation-table th, .abbreviation-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .abbreviation-table th { background-color: var(--primary-color); color: white; }
+        .abbreviation-table tr:nth-child(even) { background-color: #f2f2f2; }
         
-        .panel p, .panel ul {
-            padding: 15px 0;
-        }
-        
-        .abbreviation-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        .abbreviation-table th, .abbreviation-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        
-        .abbreviation-table th {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .abbreviation-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .title-main { font-size: 2.2rem; letter-spacing: 0.05em; }
+            .title-sub { font-size: 1.1rem; }
+            #handbook-content header { font-size: 1rem; padding: 15px 50px; }
+            .home-btn { left: 10px; }
         }
 
     </style>
@@ -358,25 +325,24 @@
 
     <!-- ======================= LANDING PAGE ======================= -->
     <div id="landing-page">
-        <!-- The user should provide the h1.png file and place it in the same directory -->
-        <img src="https://vi.wikipedia.org/wiki/T%E1%BA%ADp_tin:Emblem_of_Vietnam.svg#/media/T%E1%BA%ADp_tin:Emblem_of_Vietnam.svg" alt="Quốc huy Việt Nam" class="logo">
         <div class="issuing-authority">BỘ NỘI VỤ</div>
         
-        <h1>Cẩm nang</h1>
-        <div class="subtitle">chính quyền địa phương cấp xã</div>
-        <div class="online-tag">online</div>
+        <div class="title-container">
+            <div class="title-main">Cẩm nang</div>
+            <div class="title-sub">Chính quyền địa phương cấp xã</div>
+            <div class="title-tag">(Bản online)</div>
+        </div>
 
         <div class="button-container">
-            <button class="btn btn-secondary" onclick="openModal('modal-intro')">Lời giới thiệu</button>
-            <button class="btn btn-primary" onclick="enterHandbook()">Vào Cẩm nang</button>
-            <button class="btn btn-secondary" onclick="openModal('modal-authors')">Thông tin tác giả</button>
+            <button class="btn btn-secondary-action" onclick="openModal('modal-intro')">Giới thiệu</button>
+            <button class="btn btn-main-action" onclick="enterHandbook()">Cẩm nang</button>
+            <button class="btn btn-secondary-action" onclick="openModal('modal-authors')">Tác giả</button>
         </div>
         
-        <footer>© Bản quyền thuộc về Bộ Nội vụ</footer>
+        <footer>© 2025 Bản quyền thuộc về Bộ Nội vụ</footer>
     </div>
 
     <!-- ======================= MODALS (POPUPS) ======================= -->
-    <!-- Introduction Modal -->
     <div id="modal-intro" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-intro')">&times;</span>
@@ -387,8 +353,6 @@
              <p>Ban biên soạn trân trọng giới thiệu Cẩm nang này đến quý bạn đọc, cán bộ, công chức đang công tác tại địa phương và mong nhận được các ý kiến đóng góp để tiếp tục hoàn thiện trong các lần tái bản, góp phần xây dựng một nền hành chính cơ sở dân chủ, chuyên nghiệp, hiện đại - đúng với tinh thần “gần dân, sát dân, phục vụ Nhân dân”.</p>
         </div>
     </div>
-
-    <!-- Authors Modal -->
     <div id="modal-authors" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-authors')">&times;</span>
@@ -398,7 +362,6 @@
                 <li>1. BỘ TRƯỞNG BỘ NỘI VỤ <strong>PHẠM THỊ THANH TRÀ</strong></li>
                 <li>2. THỨ TRƯỞNG BỘ NỘI VỤ <strong>TRƯƠNG HẢI LONG</strong></li>
             </ul>
-
             <h4>Thành viên ban biên soạn:</h4>
             <ul class="infographic-list">
                 <li>1. <strong>PHAN TRUNG TUẤN</strong>, Vụ trưởng Vụ Chính quyền địa phương</li>
@@ -410,99 +373,79 @@
         </div>
     </div>
 
-
     <!-- ======================= HANDBOOK MAIN CONTENT ======================= -->
     <div id="handbook-content">
         <header>
-            CẨM NANG CHÍNH QUYỀN ĐỊA PHƯƠNG CẤP XÃ – ONLINE
+            <button class="btn home-btn" onclick="goHome()"><i class="fas fa-home"></i> Trang chủ</button>
+            Cẩm nang chính quyền địa phương cấp xã
         </header>
 
         <main>
-            <!-- Main Menu View -->
             <div id="main-menu" class="view">
                 <div class="menu-grid">
-                    <div class="menu-card" onclick="showView('view-part1')">
-                        <i class="fas fa-landmark"></i>
-                        <h3>Phần 1. Những vấn đề chung</h3>
-                    </div>
-                    <div class="menu-card" onclick="showView('view-part2')">
-                        <i class="fas fa-users"></i>
-                        <h3>Phần 2. Hội đồng nhân dân cấp xã</h3>
-                    </div>
-                    <div class="menu-card" onclick="showView('view-part3')">
-                        <i class="fas fa-building-user"></i>
-                        <h3>Phần 3. Ủy ban nhân dân cấp xã</h3>
-                    </div>
-                    <div class="menu-card" onclick="showView('view-part4')">
-                        <i class="fas fa-exchange-alt"></i>
-                        <h3>Phần 4. Một số quy định chuyển tiếp</h3>
-                    </div>
-                     <div class="menu-card" onclick="showView('view-part5')">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Phần 5. Câu hỏi thường gặp</h3>
-                    </div>
-                    <div class="menu-card" onclick="showView('view-part6')">
-                        <i class="fas fa-paperclip"></i>
-                        <h3>Phần 6. Phụ lục</h3>
-                    </div>
-                    <div class="menu-card" onclick="showView('view-abbreviations')">
-                        <i class="fas fa-book"></i>
-                        <h3>Tra cứu chữ viết tắt</h3>
+                    <div class="menu-card" onclick="showView('view-part1')"><p class="part-number">Phần 1.</p><i class="fas fa-landmark"></i><h3>Những vấn đề chung</h3></div>
+                    <div class="menu-card" onclick="showView('view-part2')"><p class="part-number">Phần 2.</p><i class="fas fa-users"></i><h3>Hội đồng nhân dân cấp xã</h3></div>
+                    <div class="menu-card" onclick="showView('view-part3')"><p class="part-number">Phần 3.</p><i class="fas fa-building-user"></i><h3>Ủy ban nhân dân cấp xã</h3></div>
+                    <div class="menu-card" onclick="showView('view-part4')"><p class="part-number">Phần 4.</p><i class="fas fa-exchange-alt"></i><h3>Một số quy định chuyển tiếp</h3></div>
+                    <div class="menu-card" onclick="showView('view-part5')"><p class="part-number">Phần 5.</p><i class="fas fa-question-circle"></i><h3>Câu hỏi thường gặp</h3></div>
+                    <div class="menu-card" onclick="showView('view-part6')"><p class="part-number">Phần 6.</p><i class="fas fa-paperclip"></i><h3>Phụ lục</h3></div>
+                    <div class="menu-card" onclick="showView('view-abbreviations')"><p class="part-number"></p><i class="fas fa-book"></i><h3>Tra cứu chữ viết tắt</h3></div>
+                </div>
+                
+                 <div style="text-align: center; margin-top: 30px;">
+                    <div class="qrcode-container">
+                        <!-- The user should provide the qcode.jpg file and place it in the same directory -->
+                        <img src="https://i.imgur.com/G5g204g.jpeg" alt="QR Code Phụ lục">
+                        <p>Phụ lục Phân cấp, phân quyền của các Bộ</p>
                     </div>
                 </div>
-                 <a href="cam_nang.pdf" download class="btn btn-primary download-pdf"><i class="fas fa-download"></i> Tải về Cẩm nang (PDF)</a>
+                
+                 <a href="cam_nang.pdf" download class="btn download-pdf"><i class="fas fa-download"></i> Tải về Cẩm nang (PDF)</a>
             </div>
 
-            <!-- Content Views (Initially Hidden) -->
-            <!-- Placeholder for Part 1 Content -->
+            <!-- Content Views -->
             <div id="view-part1" class="content-section view">
                 <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 1. Những vấn đề chung</h2>
-                
+                <h2>P1. Những vấn đề chung</h2>
                 <button class="accordion">1. Tổ chức đơn vị hành chính cấp xã</button>
                 <div class="panel">
-                    <p>Theo quy định tại Điều 1 Luật Tổ chức chính quyền địa phương năm 2025, đơn vị hành chính cấp xã gồm có xã, phường, đặc khu trực thuộc cấp tỉnh. Trong đó:</p>
+                    <p>Theo quy định tại Điều 1 Luật Tổ chức CQĐP năm 2025, đơn vị hành chính cấp xã gồm có xã, phường, đặc khu trực thuộc cấp tỉnh. Trong đó:</p>
                     <ul class="infographic-list">
                         <li><strong>Xã:</strong> là đơn vị hành chính ở nông thôn.</li>
                         <li><strong>Phường:</strong> là đơn vị hành chính ở đô thị.</li>
                         <li><strong>Đặc khu:</strong> là đơn vị hành chính ở một số hải đảo có vị trí quan trọng được thành lập phù hợp với điều kiện địa lý, tự nhiên, đặc điểm dân cư và yêu cầu phát triển kinh tế - xã hội, bảo đảm quốc phòng, an ninh.</li>
                     </ul>
-                     <p>Tính đến ngày 01/7/2025 (ngày bắt đầu thực hiện mô hình tổ chức chính quyền địa phương 02 cấp), cả nước có 3.321 đơn vị hành chính cấp xã, gồm: 2.621 xã, 687 phường và 13 đặc khu.</p>
+                     <p>Tính đến ngày 01/7/2025 (ngày bắt đầu thực hiện mô hình tổ chức CQĐP 02 cấp), cả nước có 3.321 đơn vị hành chính cấp xã, gồm: 2.621 xã, 687 phường và 13 đặc khu.</p>
                 </div>
-
-                <button class="accordion">2. Tổ chức Chính quyền địa phương cấp xã</button>
+                <button class="accordion">2. Tổ chức CQĐP cấp xã</button>
                 <div class="panel">
-                    <p>Theo quy định tại Điều 2 Luật Tổ chức chính quyền địa phương năm 2025, chính quyền địa phương ở xã, phường, đặc khu (trừ các đặc khu có dân số thường trú dưới 1.000 người) là cấp chính quyền địa phương gồm có Hội đồng nhân dân và Ủy ban nhân dân.</p>
-                    <p>Theo quy định tại Điều 28 Luật Tổ chức chính quyền địa phương năm 2025, tại đặc khu có dân số thường trú dưới 1.000 người thì không tổ chức cấp chính quyền địa phương. Ủy ban nhân dân đặc khu thực hiện các chức năng, nhiệm vụ, quyền hạn của chính quyền địa phương tại đặc khu này.</p>
+                    <p>Theo quy định tại Điều 2 Luật Tổ chức CQĐP năm 2025, CQĐP ở xã, phường, đặc khu (trừ các đặc khu có dân số thường trú dưới 1.000 người) là cấp CQĐP gồm có HĐND và UBND.</p>
+                    <p>Theo quy định tại Điều 28 Luật Tổ chức CQĐP năm 2025, tại đặc khu có dân số thường trú dưới 1.000 người thì không tổ chức cấp CQĐP. UBND đặc khu thực hiện các chức năng, nhiệm vụ, quyền hạn của CQĐP tại đặc khu này.</p>
                 </div>
-                
-                 <button class="accordion">3. Nguyên tắc tổ chức và hoạt động</button>
+                <button class="accordion">3. Nguyên tắc tổ chức và hoạt động của CQĐP</button>
                 <div class="panel">
-                    <p>Theo quy định tại Điều 4 Luật Tổ chức chính quyền địa phương năm 2025, chính quyền địa phương cấp xã có 06 nguyên tắc tổ chức và hoạt động sau đây:</p>
+                    <p>Theo quy định tại Điều 4 Luật Tổ chức CQĐP năm 2025, CQĐP cấp xã có 06 nguyên tắc tổ chức và hoạt động sau đây:</p>
                     <ul class="infographic-list">
                         <li>Tuân thủ Hiến pháp và pháp luật, quản lý xã hội bằng pháp luật; thực hiện nguyên tắc tập trung dân chủ.</li>
-                        <li>Tổ chức chính quyền địa phương tinh gọn, hiệu năng, hiệu lực, hiệu quả, đáp ứng yêu cầu quản trị địa phương chuyên nghiệp, hiện đại.</li>
-                        <li>Bảo đảm quyền con người, quyền công dân; xây dựng chính quyền địa phương gần Nhân dân, phục vụ Nhân dân.</li>
+                        <li>Tổ chức CQĐP tinh gọn, hiệu năng, hiệu lực, hiệu quả, đáp ứng yêu cầu quản trị địa phương chuyên nghiệp, hiện đại.</li>
+                        <li>Bảo đảm quyền con người, quyền công dân; xây dựng CQĐP gần Nhân dân, phục vụ Nhân dân.</li>
                         <li>Bảo đảm nền hành chính minh bạch, thống nhất, thông suốt, liên tục.</li>
-                        <li>Những công việc thuộc thẩm quyền của chính quyền địa phương phải do chính quyền địa phương quyết định và tổ chức thực hiện.</li>
-                        <li>Phân định rõ thẩm quyền giữa cơ quan nhà nước ở trung ương và chính quyền địa phương; giữa chính quyền địa phương cấp tỉnh và chính quyền địa phương cấp xã.</li>
+                        <li>Những công việc thuộc thẩm quyền của CQĐP phải do CQĐP quyết định và tổ chức thực hiện.</li>
+                        <li>Phân định rõ thẩm quyền giữa cơ quan nhà nước ở trung ương và CQĐP; giữa CQĐP cấp tỉnh và CQĐP cấp xã.</li>
                     </ul>
                 </div>
-                
-                <button class="accordion">4. Vị trí, chức năng của Hội đồng Nhân dân</button>
+                <button class="accordion">4. Vị trí, chức năng của HĐND</button>
                 <div class="panel">
-                     <p>Hội đồng nhân dân cấp xã là cơ quan quyền lực nhà nước ở cấp xã, đại diện cho ý chí, nguyện vọng và quyền làm chủ của Nhân dân, quyết định các vấn đề quan trọng của cấp xã, giám sát việc tuân theo Hiến pháp và pháp luật, giám sát hoạt động của các cơ quan nhà nước trên địa bàn; chịu trách nhiệm trước Nhân dân địa phương và cơ quan nhà nước cấp trên (Điều 5 Luật Tổ chức chính quyền địa phương năm 2025).</p>
+                     <p>HĐND cấp xã là cơ quan quyền lực nhà nước ở cấp xã, đại diện cho ý chí, nguyện vọng và quyền làm chủ của Nhân dân, quyết định các vấn đề quan trọng của cấp xã, giám sát việc tuân theo Hiến pháp và pháp luật, giám sát hoạt động của các cơ quan nhà nước trên địa bàn; chịu trách nhiệm trước Nhân dân địa phương và cơ quan nhà nước cấp trên (Điều 5 Luật Tổ chức CQĐP năm 2025).</p>
                 </div>
-                
-                 <button class="accordion">5. Vị trí, chức năng của Ủy ban Nhân dân</button>
+                <button class="accordion">5. Vị trí, chức năng của UBND xã</button>
                 <div class="panel">
-                     <p>Ủy ban nhân dân cấp xã nơi tổ chức cấp chính quyền địa phương do Hội đồng nhân dân cấp xã bầu ra, là cơ quan chấp hành của Hội đồng nhân dân, cơ quan hành chính nhà nước ở địa phương, tổ chức thi hành Hiến pháp, pháp luật và nghị quyết của Hội đồng nhân dân cấp xã, chịu trách nhiệm trước Nhân dân địa phương, Hội đồng nhân dân cấp xã và Ủy ban nhân dân cấp tỉnh (Điều 6 Luật Tổ chức chính quyền địa phương năm 2025).</p>
+                     <p>UBND cấp xã nơi tổ chức cấp chính quyền địa phương do HĐND cấp xã bầu ra, là cơ quan chấp hành của HĐND, cơ quan hành chính nhà nước ở địa phương, tổ chức thi hành Hiến pháp, pháp luật và nghị quyết của HĐND cấp xã, chịu trách nhiệm trước Nhân dân địa phương, HĐND cấp xã và UBND cấp tỉnh (Điều 6 Luật Tổ chức CQĐP năm 2025).</p>
                 </div>
-                
-                <button class="accordion">6. Đại biểu Hội đồng Nhân dân cấp xã</button>
+                <button class="accordion">6. Đại biểu HĐND cấp xã</button>
                 <div class="panel">
-                    <p>Đại biểu Hội đồng nhân dân cấp xã là người được cử tri ở địa phương bầu ra, đại diện cho ý chí, nguyện vọng của Nhân dân địa phương, chịu trách nhiệm trước cử tri địa phương và trước Hội đồng nhân dân về việc thực hiện nhiệm vụ, quyền hạn đại biểu của mình.</p>
-                    <p>Tiêu chuẩn chung của đại biểu Hội đồng nhân dân quy định tại khoản 3 Điều 5 Luật Tổ chức chính quyền địa phương năm 2025, gồm:</p>
+                    <p>Đại biểu HĐND cấp xã là người được cử tri ở địa phương bầu ra, đại diện cho ý chí, nguyện vọng của Nhân dân địa phương, chịu trách nhiệm trước cử tri địa phương và trước HĐND về việc thực hiện nhiệm vụ, quyền hạn đại biểu của mình.</p>
+                    <p>Tiêu chuẩn chung của đại biểu HĐND quy định tại khoản 3 Điều 5 Luật Tổ chức CQĐP năm 2025, gồm:</p>
                      <ul class="infographic-list">
                         <li>Trung thành với Tổ quốc, Nhân dân và Hiến pháp.</li>
                         <li>Chỉ có một quốc tịch là quốc tịch Việt Nam.</li>
@@ -512,81 +455,25 @@
                         <li>Liên hệ chặt chẽ với Nhân dân, lắng nghe ý kiến của Nhân dân, được Nhân dân tín nhiệm.</li>
                     </ul>
                 </div>
-                
             </div>
+            
+            <div id="view-part2" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P2. Hội đồng nhân dân cấp xã</h2><p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p></div>
+            <div id="view-part3" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P3. Ủy ban nhân dân cấp xã</h2><p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p></div>
+            <div id="view-part4" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P4. Một số quy định chuyển tiếp</h2><p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p></div>
+            <div id="view-part5" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P5. Câu hỏi</h2><p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p></div>
+            <div id="view-part6" class="content-section view"><button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button><h2>P6. Phụ lục</h2><p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p></div>
 
-            <!-- Placeholder for Part 2 Content -->
-            <div id="view-part2" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 2. Hội đồng nhân dân cấp xã</h2>
-                <!-- Content will be populated here -->
-                 <p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p>
-            </div>
-            
-            <!-- Placeholder for Part 3 Content -->
-            <div id="view-part3" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 3. Ủy ban nhân dân cấp xã</h2>
-                <!-- Content will be populated here -->
-                 <p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p>
-            </div>
-            
-             <!-- Placeholder for Part 4 Content -->
-            <div id="view-part4" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 4. Một số quy định chuyển tiếp</h2>
-                <!-- Content will be populated here -->
-                 <p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p>
-            </div>
-            
-             <!-- Placeholder for Part 5 Content -->
-            <div id="view-part5" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 5. Câu hỏi thường gặp</h2>
-                <!-- Content will be populated here -->
-                 <p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p>
-            </div>
-            
-             <!-- Placeholder for Part 6 Content -->
-            <div id="view-part6" class="content-section view">
-                <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                <h2>Phần 6. Phụ lục</h2>
-                <!-- Content will be populated here -->
-                 <p>Nội dung chi tiết cho phần này sẽ được cập nhật từ file Cẩm nang.</p>
-            </div>
-
-            <!-- Abbreviations View -->
             <div id="view-abbreviations" class="content-section view">
                  <button class="btn back-btn" onclick="showView('main-menu')"><i class="fas fa-arrow-left"></i> Quay lại</button>
                 <h2>Tra cứu chữ viết tắt</h2>
                 <table class="abbreviation-table">
-                    <thead>
-                        <tr>
-                            <th>Viết tắt</th>
-                            <th>Chữ viết đầy đủ</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>Viết tắt</th><th>Chữ viết đầy đủ</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td>CQĐP</td>
-                            <td>Chính quyền địa phương</td>
-                        </tr>
-                        <tr>
-                            <td>HĐND</td>
-                            <td>Hội đồng nhân dân</td>
-                        </tr>
-                        <tr>
-                            <td>UBND</td>
-                            <td>Uỷ ban nhân dân</td>
-                        </tr>
-                        <tr>
-                            <td>PCPQ</td>
-                            <td>Phân cấp, phân quyền</td>
-                        </tr>
-                        <tr>
-                            <td>PĐTQ</td>
-                            <td>Phân định thẩm quyền</td>
-                        </tr>
+                        <tr><td>CQĐP</td><td>Chính quyền địa phương</td></tr>
+                        <tr><td>HĐND</td><td>Hội đồng nhân dân</td></tr>
+                        <tr><td>UBND</td><td>Uỷ ban nhân dân</td></tr>
+                        <tr><td>PCPQ</td><td>Phân cấp, phân quyền</td></tr>
+                        <tr><td>PĐTQ</td><td>Phân định thẩm quyền</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -595,62 +482,70 @@
     </div>
 
     <script>
-        // ======================= JAVASCRIPT LOGIC =======================
+        function openModal(modalId) { document.getElementById(modalId).style.display = "block"; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = "none"; }
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) event.target.style.display = "none"; }
         
-        // --- Modal Logic ---
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
-
-        // Close modal if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-            }
-        }
-        
-        // --- Page Navigation Logic ---
         function enterHandbook() {
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('handbook-content').style.display = 'flex';
             showView('main-menu');
         }
         
+        function goHome() {
+            document.getElementById('handbook-content').style.display = 'none';
+            document.getElementById('landing-page').style.display = 'flex';
+        }
+
         function showView(viewId) {
-            // Hide all views
-            const views = document.querySelectorAll('.view');
-            views.forEach(view => {
-                view.style.display = 'none';
-            });
-            
-            // Show the target view
+            document.querySelectorAll('.view').forEach(view => { view.style.display = 'none'; });
             const targetView = document.getElementById(viewId);
-            if (targetView) {
-                targetView.style.display = 'block';
-            }
+            if (targetView) targetView.style.display = 'block';
         }
         
-        // Accordion Logic
         document.addEventListener("DOMContentLoaded", function() {
-            var acc = document.getElementsByClassName("accordion");
-            for (var i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                    } else {
+            document.querySelectorAll(".accordion").forEach(button => {
+                button.addEventListener("click", () => {
+                    const isActive = button.classList.contains("active");
+                    // Close all accordions first
+                    // document.querySelectorAll(".accordion").forEach(acc => {
+                    //    acc.classList.remove("active");
+                    //    acc.nextElementSibling.style.maxHeight = null;
+                    // });
+                    
+                    // Toggle the clicked one
+                    if (!isActive) {
+                        button.classList.add("active");
+                        const panel = button.nextElementSibling;
                         panel.style.maxHeight = panel.scrollHeight + "px";
+                    } else {
+                         button.classList.remove("active");
+                         button.nextElementSibling.style.maxHeight = null;
                     }
+
                 });
+            });
+        
+            // Replace abbreviations
+            const contentDiv = document.getElementById('handbook-content');
+            let contentHTML = contentDiv.innerHTML;
+            const replacements = {
+                'Chính quyền địa phương': 'CQĐP',
+                'Hội đồng nhân dân': 'HĐND',
+                'Uỷ ban nhân dân': 'UBND',
+                'Ủy ban nhân dân': 'UBND',
+                'Phân cấp, phân quyền': 'PCPQ',
+                'Phân định thẩm quyền': 'PĐTQ'
+            };
+
+            for (const [full, abbr] of Object.entries(replacements)) {
+                // Use a regex with word boundaries to avoid replacing parts of words
+                const regex = new RegExp(`\\b${full}\\b`, 'g');
+                contentHTML = contentHTML.replace(regex, abbr);
             }
+            contentDiv.innerHTML = contentHTML;
         });
 
     </script>
 </body>
-
 </html>
